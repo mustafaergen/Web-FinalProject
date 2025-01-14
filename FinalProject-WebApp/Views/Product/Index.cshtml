@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ProductDTO>
+
+@{
+    ViewData["Title"] = "All Products";
+}
+
+<h2>Products</h2>
+<hr />
+<div class="row">
+    <div class="col-md-3">
+        <h3>Categories</h3>
+        <hr />
+        @await Component.InvokeAsync("CategoryMenu")
+    </div>
+    <div class="col-md-9">
+        <div class="row">
+            @if (Model is not null && Model.Count() > 0)
+            {
+                @foreach (var item in Model)
+                {
+                    @await Html.PartialAsync("_ProductCard", item)
+                }
+            }
+            else
+            {
+                    <div class="alert alert-warning" role="alert">
+                        Bu kategoride sizlere gösterebileceğimiz bir ürün bulunmamaktadır.
+                    </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
