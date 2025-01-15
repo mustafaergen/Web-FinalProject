@@ -1,3 +1,4 @@
+using FinalProject_Entities.Models;
 using FinalProject_Repositories;
 using FinalProject_Repositories.Contexts;
 using FinalProject_Repositories.Contracts;
@@ -17,6 +18,10 @@ namespace FinalProject_WebApp
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
+            builder.Services.AddSession(x =>
+            {
+                x.IdleTimeout = TimeSpan.FromMinutes(10);
+            });
             builder.Services.AddDbContext<RepositoryContex>(options =>
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConn"),b=>b.MigrationsAssembly("FinalProject-WebApp")).UseLazyLoadingProxies();
@@ -28,6 +33,8 @@ namespace FinalProject_WebApp
             builder.Services.AddScoped<IServiceManager, ServiceManager>();
             builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+            builder.Services.AddSingleton<Cart>();
 
 
             builder.Services.AddAutoMapper(typeof(Program));
@@ -44,6 +51,7 @@ namespace FinalProject_WebApp
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseRouting();
 

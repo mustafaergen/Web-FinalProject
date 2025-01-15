@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Product List</h1>
 @if (TempData["Success"] != null)
 {
     <div class="alert alert-success" role="alert">
@@ -14,7 +14,7 @@
 
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a type="button" asp-action="Create" class="btn btn-outline-primary"><i class="fa fa-plus"></i>Create New</a>
 </p>
 <table class="table">
     <thead>

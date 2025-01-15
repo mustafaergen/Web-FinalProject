@@ -8,7 +8,12 @@
             <p class="card-text"><b>Price:</b>@Model.Price.ToString("C2")</p>
             <div class="btn btn-group">
                 <a asp-controller="Product" asp-action="GetById" asp-route-id="@Model.Id" class="btn btn-success"><i class="fa fa-arrow-right"></i>Detail</a>
-                <a href="#" class="btn btn-outline-success"><i class="fa fa-cart-plus"></i></a>
+                <form id="@Model.Id" asp-page="/Basket" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <button type="submit" class="btn btn-outline-success">
+                        <i class="fa fa-cart-plus"></i>
+                    </button>
+                </form>
             </div>
         </div>
     </div>

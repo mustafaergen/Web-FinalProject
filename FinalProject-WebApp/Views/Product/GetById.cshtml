@@ -13,7 +13,12 @@
         <div class="text-start">
             <h3 class="my-3 display-3">@Model.Name</h3>
             <p class="lead text-danger my-3"><b>Price:</b>@Model.Price.ToString("C2")</p>
-            <a href="#" class="btn btn-outline-success"><i class="fa fa-cart-plus"></i> Add Basket</a>
+            <form id="@Model.Id" asp-page="/Card" method="post">
+                <input type="hidden" asp-for="Id" />
+                <button type="submit" class="btn btn-outline-success">
+                    <i class="fa fa-cart-plus"></i> Add Basket
+                </button>
+            </form>
     </div>
 </div>
 <div class="row border-top py-3 my-3">
