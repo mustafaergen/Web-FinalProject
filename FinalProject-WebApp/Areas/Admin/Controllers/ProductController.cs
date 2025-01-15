@@ -2,6 +2,7 @@
 using FinalProject_Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Diagnostics;
 
 namespace FinalProject_WebApp.Areas.Admin.Controllers
 {
@@ -17,7 +18,7 @@ namespace FinalProject_WebApp.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            return View(_manager.ProductService.GetAllProducts(true).OrderByDescending(x=>x.CreatedDate));
+            return View(_manager.ProductService.GetAllProducts(true).OrderByDescending(x => x.CreatedDate));
         }
         [HttpGet]
         public IActionResult Create()
